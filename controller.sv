@@ -10,11 +10,11 @@ module controller (
     output logic [2:0] alucontrol,
     output logic       irwrite, pcwrite, regwrite, memwrite
 );
-    // internal signals for logic [cite: 46-75]
+    // internal signals for logic 
     logic [1:0] alu_op_sig;
     logic       branch_sig, pc_update_sig;
 
-    // connecting sub-modules [cite: 336-372]
+    // connecting sub-modules 
     maindec mdec_inst (
         .clk(clk), .reset(reset), .op(op),
         .aluop(alu_op_sig), .resultsrc(resultsrc), .alusrca(alusrca), .alusrcb(alusrcb),
@@ -31,7 +31,7 @@ module controller (
         .op(op), .immsrc(immsrc)
     );
 
-    // pc write enable logic based on fig 1 [cite: 132-135, 335-337]
+    // pc write enable logic based on fig 1 
     assign pcwrite = pc_update_sig | (branch_sig & zero);
 
 endmodule
@@ -42,7 +42,7 @@ module maindec (
     output logic [1:0] aluop, resultsrc, alusrca, alusrcb,
     output logic       adrsrc, irwrite, pcupdate, branch, regwrite, memwrite
 );
-    // fsm states [cite: 404-425]
+    // fsm states 
     typedef enum logic [3:0] {
         S0_FETCH    = 4'd0, 
         S1_DECODE   = 4'd1, 
@@ -112,9 +112,9 @@ module aludec (
 );
     always_comb begin
         if (aluop == 2'b00) begin
-            alucontrol = 3'b010; // ADD (lw, sw, fetch için)
+            alucontrol = 3'b010; // ADD (for lw, sw, fetch )
         end else if (aluop == 2'b01) begin
-            alucontrol = 3'b110; // SUB (beq için)
+            alucontrol = 3'b110; // SUB (for beq )
         end else begin
             // R-type or I-type ALU operations
             case (funct3)
