@@ -1,0 +1,177 @@
+m255
+K4
+z2
+!s12c _opt1
+Z0 !s99 nomlopt
+Z1 !s12c _opt
+R0
+R1
+R0
+R1
+R0
+!s11f vlog 2025.2 2025.05, May 31 2025
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z2 dC:/Users/ozgee/AppData/Local/quartus
+T_opt
+!i145 1
+!i144 0
+!s110 1777078880
+VH6;zGk_>C755MECPAaWLc3
+Z3 04 9 4 work testbench fast 0
+=1-1091d179c723-69ec125f-34a-1b68
+R0
+Z4 !s12f OEM100
+Z5 !s12b OEM100
+Z6 !s124 OEM10U5 
+Z7 !s135 nogc
+o-quiet -auto_acc_if_foreign -work work
+Z8 tCvgOpt 0 defaultOptions 1107585188
+n@_opt
+Z9 OL;O;2025.2;82
+R2
+T_opt1
+!i145 1
+!i144 0
+!s110 1777079469
+V[T>lX^hkULUTA90VjldCm3
+R3
+=1-1091d179c723-69ec14ad-1b-6f50
+R0
+R4
+R5
+R6
+R7
+o-quiet -auto_acc_if_foreign -work work +acc
+R8
+n@_opt1
+R9
+valudec
+Z10 2controller.sv|controller_testbench.sv
+Z11 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
+Z12 !s110 1777078873
+!i10b 1
+!s100 GIj2LeJ[48WdF1E_Dz>E_0
+IK58QlOaozO6W56_C<ZPn10
+S1
+Z13 dD:/fpga_hw_2
+Z14 w1777078865
+Z15 8controller.sv
+Z16 Fcontroller.sv
+!i122 4
+L0 106 29
+Z17 VDg1SIo80bB@j0V0VzS_@n1
+Z18 OL;L;2025.2;82
+r1
+!s85 0
+31
+Z19 !s108 1777078873.000000
+Z20 !s107 controller_testbench.sv|controller.sv|
+Z21 !s90 -reportprogress|300|controller.sv|controller_testbench.sv|
+!i113 0
+Z22 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z23 tCvgOpt 0 defaultOptions 1085333592
+vcontroller
+R10
+R11
+R12
+!i10b 1
+!s100 =OL7?A7IAcdYhR>R6OHf`1
+IHRN=^;`<eHYFhAoln^0nd0
+S1
+R13
+R14
+R15
+R16
+!i122 4
+L0 1 37
+R17
+R18
+r1
+!s85 0
+31
+R19
+R20
+R21
+!i113 0
+R22
+R23
+vinstrdec
+R10
+R11
+R12
+!i10b 1
+!s100 jOgO2`id[]zk55:_Ce9=C1
+IXef[c6PWW:M`eZlJJ6ZLa1
+S1
+R13
+R14
+R15
+R16
+!i122 4
+L0 136 15
+R17
+R18
+r1
+!s85 0
+31
+R19
+R20
+R21
+!i113 0
+R22
+R23
+vmaindec
+R10
+R11
+R12
+!i10b 1
+!s100 7dQ3FNHoHC4d0<`Zo<V5n3
+IjCXOXHK@XGggo]30lU3_m1
+S1
+R13
+R14
+R15
+R16
+!i122 4
+L0 39 66
+R17
+R18
+r1
+!s85 0
+31
+R19
+R20
+R21
+!i113 0
+R22
+R23
+vtestbench
+R10
+R11
+R12
+!i10b 1
+!s100 8<V;FofKTfbVa_KFoU?fP3
+I:=j@a@>kzaejJ>Ac697Hi3
+S1
+R13
+w1777077560
+8controller_testbench.sv
+Fcontroller_testbench.sv
+!i122 4
+L0 6 80
+R17
+R18
+r1
+!s85 0
+31
+R19
+R20
+R21
+!i113 0
+R22
+R23
