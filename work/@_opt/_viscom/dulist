@@ -1,5 +1,5 @@
-2 7 maindec 4 fast 17 D:/fpga_hw_2/work 0 0 131072 0 208 0
-2 6 aludec 4 fast 17 D:/fpga_hw_2/work 0 0 0 0 50 0
+1 7 maindec 4 fast 17 D:/fpga_hw_2/work 0 0 131072 0 208 0
+1 6 aludec 4 fast 17 D:/fpga_hw_2/work 0 0 0 0 46 0
 1 8 instrdec 4 fast 17 D:/fpga_hw_2/work 0 0 0 0 23 0
-1 10 controller 4 fast 17 D:/fpga_hw_2/work 0 0 131072 0 345 0
-1 9 testbench 4 fast 17 D:/fpga_hw_2/work 0 0 131072 0 569 0
+1 10 controller 4 fast 17 D:/fpga_hw_2/work 0 0 131072 0 341 0
+1 9 testbench 4 fast 17 D:/fpga_hw_2/work 0 0 131072 0 565 0

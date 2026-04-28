@@ -112,9 +112,9 @@ module aludec (
 );
     always_comb begin
         if (aluop == 2'b00) begin
-            alucontrol = 3'b010; // ADD (lw, sw, fetch için)
+            alucontrol = 3'b010; // ADD (for lw, sw, fetch )
         end else if (aluop == 2'b01) begin
-            alucontrol = 3'b110; // SUB (beq için)
+            alucontrol = 3'b110; // SUB (for beq )
         end else begin
             // R-type or I-type ALU operations
             case (funct3)

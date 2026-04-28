@@ -110,26 +110,24 @@ module aludec (
     input  logic [1:0] aluop,
     output logic [2:0] alucontrol
 );
+    logic RtypeSub;
+    assign RtypeSub = funct7b5 & opb5; // Subtraction condition for R-type
+
     always_comb begin
-        if (aluop == 2'b00) begin
-            alucontrol = 3'b010; // ADD (for lw, sw, fetch )
-        end else if (aluop == 2'b01) begin
-            alucontrol = 3'b110; // SUB (for beq )
-        end else begin
-            // R-type or I-type ALU operations
-            case (funct3)
-                3'b000: begin
-                    if (funct7b5 == 1'b1 && opb5 == 1'b1) 
-                        alucontrol = 3'b110; // sub
-                    else 
-                        alucontrol = 3'b010; // add or addi
-                end
-                3'b010:  alucontrol = 3'b111; // slt
-                3'b110:  alucontrol = 3'b001; // or
-                3'b111:  alucontrol = 3'b000; // and
-                default: alucontrol = 3'b010;
-            endcase
-        end
+        case (aluop)
+            2'b00: alucontrol = 3'b000; // ADD (lw, sw, fetch PC+4)
+            2'b01: alucontrol = 3'b001; // SUB (beq)
+            2'b10: begin // R-type or I-type
+                case (funct3)
+                    3'b000:  alucontrol = RtypeSub ? 3'b001 : 3'b000; // sub : add
+                    3'b010:  alucontrol = 3'b101; // slt
+                    3'b110:  alucontrol = 3'b011; // or
+                    3'b111:  alucontrol = 3'b010; // and
+                    default: alucontrol = 3'bxxx;
+                endcase
+            end
+            default: alucontrol = 3'bxxx;
+        endcase
     end
 endmodule
 
