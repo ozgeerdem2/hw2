@@ -1,0 +1,81 @@
+module datapath (
+    input  logic        clk, reset, pcwrite, adrsrc, irwrite, regwrite,
+    input  logic [1:0]  resultsrc, alusrca, alusrcb, immsrc,
+    input  logic [2:0]  alucontrol,
+    output logic [6:0]  op,
+    output logic [2:0]  funct3,
+    output logic        funct7b5, zero,
+    output logic [31:0] adr, writedata,
+    input  logic [31:0] readdata,
+    output logic [31:0] result
+);
+    logic [31:0] pc, oldpc, instr, data, a, aluresult, aluout, immext, rd1, rd2, srca, srcb;
+
+    assign op = instr[6:0];
+    assign funct3 = instr[14:12];
+    assign funct7b5 = instr[30];
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) pc <= 32'b0;
+        else if (pcwrite) pc <= result;
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) oldpc <= 32'b0;
+        else if (irwrite) oldpc <= pc;
+
+    assign adr = adrsrc ? aluout : pc;
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) instr <= 32'b0;
+        else if (irwrite) instr <= readdata;
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) data <= 32'b0;
+        else data <= readdata;
+
+    regfile rf(
+        .clk(clk), .we3(regwrite),
+        .a1(instr[19:15]), .a2(instr[24:20]), .a3(instr[11:7]),
+        .wd3(result), .rd1(rd1), .rd2(rd2)
+    );
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) a <= 32'b0;
+        else a <= rd1;
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) writedata <= 32'b0;
+        else writedata <= rd2;
+
+    extend ext(.instr(instr), .immsrc(immsrc), .immext(immext));
+
+    always_comb
+        case (alusrca)
+            2'b00: srca = pc;
+            2'b01: srca = oldpc;
+            2'b10: srca = a;
+            default: srca = pc;
+        endcase
+
+    always_comb
+        case (alusrcb)
+            2'b00: srcb = writedata;
+            2'b01: srcb = immext;
+            2'b10: srcb = 32'd4;
+            default: srcb = writedata;
+        endcase
+
+    alu alu_unit(.a(srca), .b(srcb), .alucontrol(alucontrol), .result(aluresult), .zero(zero));
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) aluout <= 32'b0;
+        else aluout <= aluresult;
+
+    always_comb
+        case (resultsrc)
+            2'b00: result = aluout;
+            2'b01: result = data;
+            2'b10: result = aluresult;
+            default: result = aluout;
+        endcase
+endmodule

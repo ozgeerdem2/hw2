@@ -1,1 +1,72 @@
+D:/fpga_hw_2/controller.sv {1 {vlog -work work -vopt -sv -stats=none D:/fpga_hw_2/controller.sv
+Questa Altera Starter FPGA Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+** Note: (vlog-220) 'D:/fpga_hw_2/fpga_hw_2.mpf' is used as the ini file.
+-- Compiling module controller
+-- Compiling module maindec
+-- Compiling module aludec
+-- Compiling module instrdec
 
+Top level modules:
+	controller
+
+} {} {}} D:/fpga_hw_2/memory.sv {1 {vlog -work work -vopt -sv -stats=none D:/fpga_hw_2/memory.sv
+Questa Altera Starter FPGA Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+** Note: (vlog-220) 'D:/fpga_hw_2/fpga_hw_2.mpf' is used as the ini file.
+-- Compiling module memory
+
+Top level modules:
+	memory
+
+} {} {}} D:/fpga_hw_2/riscv_testbench.sv {1 {vlog -work work -vopt -sv -stats=none D:/fpga_hw_2/riscv_testbench.sv
+Questa Altera Starter FPGA Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+** Note: (vlog-220) 'D:/fpga_hw_2/fpga_hw_2.mpf' is used as the ini file.
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}} D:/fpga_hw_2/building_blocks.sv {1 {vlog -work work -vopt -sv -stats=none D:/fpga_hw_2/building_blocks.sv
+Questa Altera Starter FPGA Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+** Note: (vlog-220) 'D:/fpga_hw_2/fpga_hw_2.mpf' is used as the ini file.
+-- Compiling module alu
+-- Compiling module regfile
+-- Compiling module extend
+-- Compiling module flopr
+-- Compiling module flopenr
+-- Compiling module mux2
+-- Compiling module mux3
+
+Top level modules:
+	alu
+	regfile
+	extend
+	flopr
+	flopenr
+	mux2
+	mux3
+
+} {} {}} D:/fpga_hw_2/top.sv {1 {vlog -work work -vopt -sv -stats=none D:/fpga_hw_2/top.sv
+Questa Altera Starter FPGA Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+** Note: (vlog-220) 'D:/fpga_hw_2/fpga_hw_2.mpf' is used as the ini file.
+-- Compiling module top
+
+Top level modules:
+	top
+
+} {} {}} D:/fpga_hw_2/riscv.sv {1 {vlog -work work -vopt -sv -stats=none D:/fpga_hw_2/riscv.sv
+Questa Altera Starter FPGA Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+** Note: (vlog-220) 'D:/fpga_hw_2/fpga_hw_2.mpf' is used as the ini file.
+-- Compiling module riscv
+
+Top level modules:
+	riscv
+
+} {} {}} D:/fpga_hw_2/controller_testbench.sv {1 {vlog -work work -vopt -sv -stats=none D:/fpga_hw_2/controller_testbench.sv
+Questa Altera Starter FPGA Edition-64 vlog 2025.2 Compiler 2025.05 May 31 2025
+** Note: (vlog-220) 'D:/fpga_hw_2/fpga_hw_2.mpf' is used as the ini file.
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}}

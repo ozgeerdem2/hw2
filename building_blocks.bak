@@ -1,0 +1,121 @@
+module maindec(
+    input  logic       clk, reset,
+    input  logic [6:0] op,
+    output logic       pcupdate, branch, regwrite, memwrite, irwrite, adrsrc,
+    output logic [1:0] resultsrc, alusrcb, alusrca, aluop
+);
+    typedef enum logic [3:0] {
+        S0=4'd0, S1=4'd1, S2=4'd2, S3=4'd3, S4=4'd4, 
+        S5=4'd5, S6=4'd6, S7=4'd7, S8=4'd8, S9=4'd9, S10=4'd10
+    } statetype;
+
+    statetype state, nextstate;
+
+    always_ff @(posedge clk or posedge reset)
+        if (reset) state <= S0;
+        else state <= nextstate;
+
+    always_comb begin
+        case (state)
+            S0: nextstate = S1;
+            S1: case (op)
+                7'b0000011, 7'b0100011: nextstate = S2;
+                7'b0110011:             nextstate = S6;
+                7'b0010011:             nextstate = S8;
+                7'b1101111:             nextstate = S9;
+                7'b1100011:             nextstate = S10;
+                default:                nextstate = S0;
+            endcase
+            S2: if (op == 7'b0000011) nextstate = S3;
+                       else nextstate = S5;
+            S3: nextstate = S4;
+            S6, S8, S9: nextstate = S7;
+            default: nextstate = S0;
+        endcase
+    end
+
+    always_comb begin
+        {pcupdate, branch, regwrite, memwrite, irwrite, adrsrc} = 6'b0;
+        {resultsrc, alusrcb, alusrca, aluop} = 8'b0;
+        case (state)
+            S0: begin adrsrc=0; irwrite=1; alusrca=2'b00; alusrcb=2'b10; aluop=2'b00; resultsrc=2'b10; pcupdate=1; end
+            S1: begin alusrca=2'b01; alusrcb=2'b01; aluop=2'b00; end
+            S2: begin alusrca=2'b10; alusrcb=2'b01; aluop=2'b00; end
+            S3: begin adrsrc=1; resultsrc=2'b00; end
+            S4: begin resultsrc=2'b01; regwrite=1; end
+            S5: begin adrsrc=1; resultsrc=2'b00; memwrite=1; end
+            S6: begin alusrca=2'b10; alusrcb=2'b00; aluop=2'b10; end
+            S7: begin resultsrc=2'b00; regwrite=1; end
+            S8: begin alusrca=2'b10; alusrcb=2'b01; aluop=2'b10; end
+            S9: begin alusrca=2'b01; alusrcb=2'b10; aluop=2'b00; resultsrc=2'b00; pcupdate=1; end
+            S10: begin alusrca=2'b10; alusrcb=2'b00; aluop=2'b01; branch=1; end
+        endcase
+    end
+endmodule
+
+module aludec(
+    input  logic       opb5, funct7b5,
+    input  logic [2:0] funct3,
+    input  logic [1:0] ALUOP,
+    output logic [2:0] ALUControl
+);
+    logic RtypeSub;
+    assign RtypeSub = funct7b5 & opb5;
+    always_comb
+        case (ALUOP)
+            2'b00: ALUControl = 3'b000;
+            2'b01: ALUControl = 3'b001;
+            default: case (funct3)
+                3'b000: ALUControl = RtypeSub ? 3'b001 : 3'b000;
+                3'b010: ALUControl = 3'b101;
+                3'b110: ALUControl = 3'b011;
+                3'b111: ALUControl = 3'b010;
+                default: ALUControl = 3'bxxx;
+            endcase
+        endcase
+endmodule
+
+module instrdec(input logic [6:0] op, output logic [1:0] ImmSrc);
+    always_comb
+        case (op)
+            7'b0110011:             ImmSrc = 2'bxx;
+            7'b0010011, 7'b0000011: ImmSrc = 2'b00;
+            7'b0100011:             ImmSrc = 2'b01;
+            7'b1100011:             ImmSrc = 2'b10;
+            7'b1101111:             ImmSrc = 2'b11;
+            default:                ImmSrc = 2'bxx;
+        endcase
+endmodule
+
+module alu(input logic [31:0] a, b, input logic [2:0] alucontrol, output logic [31:0] result, output logic zero);
+    logic [31:0] condinvb, sum;
+    assign condinvb = alucontrol[0] ? ~b : b;
+    assign sum = a + condinvb + alucontrol[0];
+    always_comb
+        case (alucontrol)
+            3'b000, 3'b001: result = sum;
+            3'b010: result = a & b;
+            3'b011: result = a | b;
+            3'b101: result = {31'b0, sum[31]};
+            default: result = 32'b0;
+        endcase
+    assign zero = (result == 32'b0);
+endmodule
+
+module regfile(input logic clk, we3, input logic [4:0] a1, a2, a3, input logic [31:0] wd3, output logic [31:0] rd1, rd2);
+    logic [31:0] rf [31:0];
+    always_ff @(posedge clk) if (we3) rf[a3] <= wd3;
+    assign rd1 = (a1 != 5'b0) ? rf[a1] : 32'b0;
+    assign rd2 = (a2 != 5'b0) ? rf[a2] : 32'b0;
+endmodule
+
+module extend(input logic [31:0] instr, input logic [1:0] immsrc, output logic [31:0] immext);
+    always_comb
+        case (immsrc)
+            2'b00:   immext = {{20{instr[31]}}, instr[31:20]};
+            2'b01:   immext = {{20{instr[31]}}, instr[31:25], instr[11:7]};
+            2'b10:   immext = {{20{instr[31]}}, instr[7], instr[30:25], instr[11:8], 1'b0};
+            2'b11:   immext = {{12{instr[31]}}, instr[19:12], instr[20], instr[30:21], 1'b0};
+            default: immext = 32'b0;
+        endcase
+endmodule

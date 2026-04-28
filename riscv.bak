@@ -1,0 +1,29 @@
+module riscv(
+    input  logic        clk, reset,
+    output logic [31:0] adr, writedata,
+    input  logic [31:0] readdata,
+    output logic        memwrite,
+    output logic [31:0] result
+);
+    logic [1:0] immsrc, alusrca, alusrcb, resultsrc;
+    logic       adrsrc, irwrite, pcwrite, regwrite, zero, funct7b5;
+    logic [2:0] alucontrol, funct3;
+    logic [6:0] op;
+
+    controller c(
+        .clk(clk), .reset(reset), .op(op), .funct3(funct3),
+        .funct7b5(funct7b5), .zero(zero), .immsrc(immsrc),
+        .alusrca(alusrca), .alusrcb(alusrcb), .resultsrc(resultsrc),
+        .adrsrc(adrsrc), .alucontrol(alucontrol), .irwrite(irwrite),
+        .pcwrite(pcwrite), .regwrite(regwrite), .memwrite(memwrite)
+    );
+
+    datapath dp(
+        .clk(clk), .reset(reset), .pcwrite(pcwrite), .adrsrc(adrsrc),
+        .irwrite(irwrite), .regwrite(regwrite), .resultsrc(resultsrc),
+        .alusrca(alusrca), .alusrcb(alusrcb), .immsrc(immsrc),
+        .alucontrol(alucontrol), .op(op), .funct3(funct3),
+        .funct7b5(funct7b5), .zero(zero), .adr(adr),
+        .writedata(writedata), .readdata(readdata), .result(result)
+    );
+endmodule

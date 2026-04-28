@@ -3,7 +3,23 @@ K4
 z2
 Z0 !s12c _opt1
 Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
 Z2 !s12c _opt
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R2
 R1
 R0
 R1
@@ -24,14 +40,14 @@ Z3 dC:/Users/ozgee/AppData/Local/quartus
 T_opt
 !i145 1
 !i144 0
-!s110 1777374159
-VTM^@j`[YM:hg153[omg?g1
+!s110 1777400581
+VOU4QM@=Qi5cT<9mEdekI?0
 Z4 04 9 4 work testbench fast 0
-=1-1091d179c723-69f093cd-206-3fa4
+=1-1091d179c723-69f0fb04-3d9-4cf4
 R1
 Z5 !s12f OEM100
 Z6 !s12b OEM100
-Z7 !s124 OEM10U5 
+Z7 !s124 OEM10U23 
 Z8 !s135 nogc
 o-quiet -auto_acc_if_foreign -work work
 Z9 tCvgOpt 0 defaultOptions 1107585188
@@ -41,10 +57,10 @@ R3
 T_opt1
 !i145 1
 !i144 0
-!s110 1777375283
-V5`ZkF4TnUG?VZfQI0[YLU1
+!s110 1777408695
+V959hFLdgUAXD<3XU4BZGC1
 R4
-=1-1091d179c723-69f09832-1d5-6b58
+=1-1091d179c723-69f11ab6-17e-3f9c
 R1
 R5
 R6
@@ -54,69 +70,195 @@ o-quiet -auto_acc_if_foreign -work work +acc
 R9
 n@_opt1
 R10
-valudec
-Z11 2controller.sv|controller_testbench.sv
+R3
+valu
+Z11 2building_blocks.sv|controller.sv|controller_testbench.sv|datapath.sv|memory.sv|riscv.sv|riscv_testbench.sv|top.sv
 Z12 DXx6 sv_std 3 std 0 22 @5XbY]_OacJl=`ToSm<M^0
-Z13 !s110 1777374331
+Z13 !s110 1777413515
 !i10b 1
-!s100 3Z==Hm`L^V3_WZX?jiAgl3
-ID_6i>eWl:8=3QVS@Sckc[3
+!s100 >?UZH_8cm=BC?TVFSk=Cn3
+IAZ;hR_FzJjCS:InOOF;^^1
 S1
 Z14 dD:/fpga_hw_2
-Z15 w1777374064
-Z16 8controller.sv
-Z17 Fcontroller.sv
-!i122 6
-L0 106 27
+Z15 w1777408604
+Z16 8building_blocks.sv
+Z17 Fbuilding_blocks.sv
+!i122 137
+L0 1 18
 Z18 VDg1SIo80bB@j0V0VzS_@n1
 Z19 OL;L;2025.2;82
 r1
 !s85 0
 31
-Z20 !s108 1777374331.000000
-Z21 !s107 controller_testbench.sv|controller.sv|
-Z22 !s90 -reportprogress|300|-sv|controller.sv|controller_testbench.sv|
+Z20 !s108 1777413515.000000
+!s107 top.sv|riscv_testbench.sv|riscv.sv|memory.sv|datapath.sv|controller_testbench.sv|controller.sv|building_blocks.sv|
+Z21 !s90 -reportprogress|300|building_blocks.sv|controller.sv|controller_testbench.sv|datapath.sv|memory.sv|riscv.sv|riscv_testbench.sv|top.sv|
 !i113 0
-Z23 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z24 tCvgOpt 0 defaultOptions 1085333592
-vcontroller
+Z22 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z23 tCvgOpt 0 defaultOptions 1085333592
+valudec
 R11
 R12
 R13
 !i10b 1
-!s100 =OL7?A7IAcdYhR>R6OHf`1
-I;UQ_Z6S6RiiQXjii8eRL?2
+!s100 3Z==Hm`L^V3_WZX?jiAgl3
+I<_B?goY707<C0gX^]3_HN3
 S1
 R14
-R15
-R16
-R17
-!i122 6
-L0 1 37
+Z24 w1777374064
+Z25 8controller.sv
+Z26 Fcontroller.sv
+!i122 137
+L0 106 27
 R18
 R19
 r1
 !s85 0
 31
 R20
+Z27 !s107 top.sv|riscv_testbench.sv|riscv.sv|memory.sv|datapath.sv|controller_testbench.sv|controller.sv|building_blocks.sv|
 R21
-R22
 !i113 0
+R22
 R23
+vcontroller
+R11
+R12
+R13
+!i10b 1
+!s100 =OL7?A7IAcdYhR>R6OHf`1
+IHRN=^;`<eHYFhAoln^0nd0
+S1
+R14
 R24
+R25
+R26
+!i122 137
+Z28 L0 1 37
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vdatapath
+R11
+R12
+R13
+!i10b 1
+!s100 eUITh:IE[Uoc=4A_WG9eR0
+IO0=Hnm6I4eb=AT9L:P=P^3
+S1
+R14
+w1777408618
+8datapath.sv
+Fdatapath.sv
+!i122 137
+L0 1 40
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vextend
+R11
+R12
+R13
+!i10b 1
+!s100 4zEnzfh0hNFT9h<SDH9i40
+I2Y:P3?oXVXbl3R_QX`Z5[2
+S1
+R14
+R15
+R16
+R17
+!i122 137
+L0 30 12
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vflopenr
+R11
+R12
+R13
+!i10b 1
+!s100 l7P1c8=Z0i>0j`2JBhURm3
+I:Q0eFCoj8^goRZbX4S4O=0
+S1
+R14
+R15
+R16
+R17
+!i122 137
+L0 51 7
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vflopr
+R11
+R12
+R13
+!i10b 1
+!s100 z9T:I1kWeb@2@X9gkcUl>1
+In1nBRWVRBeMdbib8NjYND0
+S1
+R14
+R15
+R16
+R17
+!i122 137
+L0 43 7
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
 vinstrdec
 R11
 R12
 R13
 !i10b 1
 !s100 N9VbK]kDe^hbJ6FF8Z@c43
-IY@A`CdI_W;D];4HSKP_dO1
+I6fe1zH_JTB?WI8fNk>U2F3
 S1
 R14
-R15
-R16
-R17
-!i122 6
+R24
+R25
+R26
+!i122 137
 L0 134 15
 R18
 R19
@@ -124,24 +266,24 @@ r1
 !s85 0
 31
 R20
+R27
 R21
-R22
 !i113 0
+R22
 R23
-R24
 vmaindec
 R11
 R12
 R13
 !i10b 1
 !s100 7dQ3FNHoHC4d0<`Zo<V5n3
-I`f9jY7obS6HXXjI>@8YLD2
+IjCXOXHK@XGggo]30lU3_m1
 S1
 R14
-R15
-R16
-R17
-!i122 6
+R24
+R25
+R26
+!i122 137
 L0 39 66
 R18
 R19
@@ -149,33 +291,183 @@ r1
 !s85 0
 31
 R20
+R27
 R21
-R22
 !i113 0
+R22
 R23
-R24
-vtestbench
+vmemory
 R11
 R12
 R13
 !i10b 1
-!s100 8<V;FofKTfbVa_KFoU?fP3
-IAEJ3_TX5n?d^`VW;74TK12
+!s100 O4Oh5CRQU_dm_N<mQXO[o3
+I7Q0O`99CX9oN:8T_[N4zk3
 S1
 R14
-w1777077560
-8controller_testbench.sv
-Fcontroller_testbench.sv
-!i122 6
-L0 6 80
+w1777408661
+8memory.sv
+Fmemory.sv
+!i122 137
+L0 1 15
 R18
 R19
 r1
 !s85 0
 31
 R20
+R27
 R21
-R22
 !i113 0
+R22
 R23
-R24
+vmux2
+R11
+R12
+R13
+!i10b 1
+!s100 RnYFX3R@S_7[n[Wm`OMaQ2
+I551UWDGag=:9:^^4I68[12
+S1
+R14
+R15
+R16
+R17
+!i122 137
+L0 59 6
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vmux3
+R11
+R12
+R13
+!i10b 1
+!s100 J@Eim;EV8]a9=Dd`5RZ=H1
+Ih^>=IhgLCG74WPe`f;JN;0
+S1
+R14
+R15
+R16
+R17
+!i122 137
+L0 66 6
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vregfile
+R11
+R12
+R13
+!i10b 1
+!s100 NI5kJfF4a3kVY5=31an[l1
+IIR[NBhzhZdXi:6eid]>UW3
+S1
+R14
+R15
+R16
+R17
+!i122 137
+L0 20 9
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vriscv
+R11
+R12
+R13
+!i10b 1
+!s100 fYfGmKd3bfF:>9DNU@`MO1
+Id2AJ6d:]J5KZcXm6_SKHz1
+S1
+R14
+w1777408636
+8riscv.sv
+Friscv.sv
+!i122 137
+L0 1 29
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vtestbench
+R11
+R12
+R13
+!i10b 1
+!s100 L3;b5UQYKASI]3UfU_7V81
+I[]c4geLT6XKT=UWFf4HUP0
+S1
+R14
+w1777380060
+8riscv_testbench.sv
+Friscv_testbench.sv
+!i122 137
+R28
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23
+vtop
+R11
+R12
+R13
+!i10b 1
+!s100 acHigh0>z3PZ]FdJ6]?B20
+IDbMLKZ2cSoQiWmz@d`5_e3
+S1
+R14
+w1777408647
+8top.sv
+Ftop.sv
+!i122 137
+L0 1 20
+R18
+R19
+r1
+!s85 0
+31
+R20
+R27
+R21
+!i113 0
+R22
+R23

@@ -1,0 +1,21 @@
+module top (
+    input  logic        clk, reset,
+    output logic [31:0] WriteData, DataAdr,
+    output logic        MemWrite
+);
+    logic [31:0] readdata;
+    logic [31:0] result;
+
+    riscv riscv(
+        .clk(clk), .reset(reset),
+        .adr(DataAdr), .writedata(WriteData),
+        .readdata(readdata), .memwrite(MemWrite),
+        .result(result)
+    );
+
+    memory mem (
+        .clk(clk), .we(MemWrite),
+        .a(DataAdr), .wd(WriteData),
+        .rd(readdata)
+    );
+endmodule

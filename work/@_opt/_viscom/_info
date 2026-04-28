@@ -1,5 +1,5 @@
 __design_bin_path=D:/fpga_hw_2
-incr_run_version=65536
+incr_run_version=81920
 incr_partial_run_stats=0:0
 incr_no_change_stats=0:0
 opt_data_elab=D:/fpga_hw_2/work/@_opt
